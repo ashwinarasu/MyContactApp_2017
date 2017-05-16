@@ -32,10 +32,20 @@
         android:layout_height="wrap_content"
         android:text="Add Data"
         android:id="@+id/button_add"
-        android:layout_marginBottom="47dp"
+        android:onClick="addData"
+        android:nestedScrollingEnabled="true"
+        android:layout_above="@+id/button_view"
+        android:layout_alignStart="@+id/button_view" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Data"
+        android:id="@+id/button_view"
+        android:layout_marginBottom="45dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="addData"
+        android:onClick="viewData"
         android:nestedScrollingEnabled="true" />
 
 </RelativeLayout>
