@@ -2,6 +2,7 @@ package com.example.arasua6707.mycontactapp;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Add the layout vars
         editName = (EditText) findViewById(R.id.editText_name);
+
     }
 
     public void addData(View v){
@@ -57,7 +59,14 @@ public class MainActivity extends AppCompatActivity {
         Cursor res = myDb.getAllData();
         if(res.getCount() == 0){
             showMessage("Error", "No data found in database");
-            //Output message using Log.d and Toast
+            //Output message using Log.d and Toast. done
+            Log.d("MyContact", "No data found in database");
+            Context context = getApplicationContext();
+            CharSequence text = "No data to display";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
 
             return;
         }
@@ -69,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showMessage(String title, String message) {
-        //AlertDialg.builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
+
     }
 }
