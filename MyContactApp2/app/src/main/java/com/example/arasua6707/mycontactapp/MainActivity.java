@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
     EditText editName;
+    EditText editAddress;
+    EditText editNumber;
     Button btnAddData;
 
     @Override
@@ -26,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Add the layout vars
         editName = (EditText) findViewById(R.id.editText_name);
-
+        editAddress = (EditText) findViewById(R.id.editText_address);
+        editNumber = (EditText) findViewById(R.id.editText_number);
     }
 
     public void addData(View v){
@@ -55,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
     public void viewData (View v){
         Cursor res = myDb.getAllData();
         if(res.getCount() == 0){
@@ -72,9 +76,19 @@ public class MainActivity extends AppCompatActivity {
         }
         StringBuffer buffer = new StringBuffer();
         //setup a loop with Cursor (res) using moveToNext
+        if(res != null){
+            res.moveToFirst();
+            for(int i = 0; i < res.getCount(); i++){
+                for(int j = 0; j<res.getColumnNames().length;j++){
+                    buffer.append("\n");
+                }
+                buffer.append("\n");
+                res.moveToNext();
+            }
+            showMessage("Data", buffer.toString());
+        }
         //append each COL to the buffer
         //display the message using showMessage
-        showMessage("Data", buffer.toString());
     }
 
     private void showMessage(String title, String message) {
