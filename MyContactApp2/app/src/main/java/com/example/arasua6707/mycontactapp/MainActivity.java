@@ -1,6 +1,7 @@
 package com.example.arasua6707.mycontactapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void addData(View v){
         Log.d("MyContact", "Successful data insertion");
-        boolean isInserted = myDb.insertData(editName.getText().toString());
+        boolean isInserted = myDb.insertData(editName.getText().toString(), editAddress.getText().toString(), editNumber.getText().toString());
 
 
 
@@ -89,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
         }
         //append each COL to the buffer
         //display the message using showMessage
+    }
+
+    public void searchScreen(View v){
+        Intent ional = new Intent(this, SearchActivity.class);
+        startActivity(ional);
     }
 
     private void showMessage(String title, String message) {
