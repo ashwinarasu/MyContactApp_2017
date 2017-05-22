@@ -34,19 +34,18 @@
         android:id="@+id/button_add"
         android:onClick="addData"
         android:nestedScrollingEnabled="true"
-        android:layout_above="@+id/button_view"
-        android:layout_toStartOf="@+id/editText_address" />
+        android:layout_alignTop="@+id/button_view"
+        android:layout_toEndOf="@+id/textView" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Data"
         android:id="@+id/button_view"
-        android:layout_marginBottom="48dp"
         android:onClick="viewData"
         android:nestedScrollingEnabled="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/button_add" />
+        android:layout_toEndOf="@+id/button_add" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -84,33 +83,23 @@
         android:layout_marginTop="46dp"
         android:layout_toEndOf="@+id/textView3" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="SEARCH:"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/editText_number"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextSearch"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/editText_number" />
+        android:id="@+id/editText_search"
+        android:layout_alignTop="@+id/button_search"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/button_search" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SEARCH"
+        android:text="SEARCH BY NAME"
         android:id="@+id/button_search"
-        android:layout_alignTop="@+id/button_add"
-        android:layout_alignEnd="@+id/editText_address"
-        android:layout_marginEnd="31dp"
         android:nestedScrollingEnabled="true"
-        android:onClick="searchScreen" />
+        android:onClick="searchData"
+        android:layout_marginTop="65dp"
+        android:layout_below="@+id/editText_number"
+        android:layout_alignEnd="@+id/editText_number" />
 
 </RelativeLayout>

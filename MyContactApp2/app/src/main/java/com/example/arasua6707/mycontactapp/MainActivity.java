@@ -18,7 +18,10 @@ public class MainActivity extends AppCompatActivity {
     EditText editName;
     EditText editAddress;
     EditText editNumber;
+    EditText editSearch;
     Button btnAddData;
+
+    String[] entries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +34,13 @@ public class MainActivity extends AppCompatActivity {
         editName = (EditText) findViewById(R.id.editText_name);
         editAddress = (EditText) findViewById(R.id.editText_address);
         editNumber = (EditText) findViewById(R.id.editText_number);
+        editSearch = (EditText) findViewById(R.id.editText_search);
+
+        entries = new String[] {"Name: ", "Address: ", "Number: "};
     }
 
     public void addData(View v){
-        Log.d("MyContact", "Successful data insertion");
+        //Log.d("MyContact", "Successful data insertion");
         boolean isInserted = myDb.insertData(editName.getText().toString(), editAddress.getText().toString(), editNumber.getText().toString());
 
 
@@ -80,8 +86,11 @@ public class MainActivity extends AppCompatActivity {
         if(res != null){
             res.moveToFirst();
             for(int i = 0; i < res.getCount(); i++){
-                for(int j = 0; j<res.getColumnNames().length;j++){
+                for(int j = 1; j<=3;j++){
+                    buffer.append(entries[j-1]);
+                    buffer.append(res.getString(j));
                     buffer.append("\n");
+
                 }
                 buffer.append("\n");
                 res.moveToNext();
@@ -92,9 +101,29 @@ public class MainActivity extends AppCompatActivity {
         //display the message using showMessage
     }
 
-    public void searchScreen(View v){
-        Intent ional = new Intent(this, SearchActivity.class);
-        startActivity(ional);
+    public void searchData(View v){
+        Cursor res = myDb.getAllData();
+        StringBuffer buffer = new StringBuffer();
+        //setup a loop with Cursor (res) using moveToNext
+        if (res != null) {
+            res.moveToFirst();
+            for (int i = 0; i < res.getCount(); i++) {
+                if (res.getString(1).equals(editSearch.getText().toString())) {
+                    for (int j = 0; j <= res.getColumnNames().length; j++) {
+                        buffer.append(entries[j]);
+                        buffer.append(res.getString(j));
+                        buffer.append("\n");
+
+
+                    }
+                    buffer.append("\n");
+                    res.moveToNext();
+                }
+                showMessage("Contact: " , buffer.toString());
+            }
+            //append each COL to the buffer
+            //display the message using showMessage
+        }
     }
 
     private void showMessage(String title, String message) {
@@ -103,6 +132,6 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle(title);
         builder.setMessage(message);
         builder.show();
-
     }
+
 }

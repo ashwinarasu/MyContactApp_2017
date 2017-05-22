@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.view.View;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -20,13 +21,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_3 = "ADDRESS";
     public static final String COL_4 = "NUMBER";
 
+
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 2);
+        super(context, DATABASE_NAME, null, 3);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT,ADDRESS TEXT,NUMBER TEXT)");
     }
 
     @Override
@@ -39,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, name);
         contentValues.put(COL_3, address);
-        contentValues.put(COL_3, number);
+        contentValues.put(COL_4, number);
 
 
 
